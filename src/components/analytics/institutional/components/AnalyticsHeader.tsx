@@ -8,10 +8,12 @@ interface AnalyticsHeaderProps {
   academicYear: string;
   semester: string;
   department: string;
+  institution?: string;
   showFilters: boolean;
   onAcademicYearChange: (value: string) => void;
   onSemesterChange: (value: string) => void;
   onDepartmentChange: (value: string) => void;
+  onInstitutionChange?: (value: string) => void;
   onToggleFilters: () => void;
   overallStats: {
     totalPillars: number;
@@ -25,14 +27,17 @@ export const AnalyticsHeader = ({
   academicYear,
   semester,
   department,
+  institution = "all",
   showFilters,
   onAcademicYearChange,
   onSemesterChange,
   onDepartmentChange,
+  onInstitutionChange,
   onToggleFilters,
   overallStats
 }: AnalyticsHeaderProps) => {
-  const hasActiveFilters = academicYear !== "2024-25" || semester !== "fall" || department !== "all";
+  const hasActiveFilters = academicYear !== "2024-25" || semester !== "fall" || department !== "all" || (onInstitutionChange && institution !== "all");
+  const isRegulatorView = onInstitutionChange !== undefined;
 
   return (
     <div className="bg-white border-b border-ds-border shadow-sm sticky top-0 z-40 mb-6">
@@ -45,10 +50,16 @@ export const AnalyticsHeader = ({
               </div>
               <div className="animate-fade-in">
                 <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-ds-text-primary leading-tight mb-1">
-                  Analytics
+                  {isRegulatorView ? "Regulator Analytics" : "Analytics"}
                 </h1>
                 <div className="flex items-center space-x-2 text-sm text-ds-text-muted">
                   <span>{academicYear} {semester.charAt(0).toUpperCase() + semester.slice(1)}</span>
+                  {isRegulatorView && institution !== "all" && (
+                    <>
+                      <span>•</span>
+                      <span>{institution}</span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
@@ -78,10 +89,27 @@ export const AnalyticsHeader = ({
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-semibold text-ds-text-primary">Filter Analytics Data</h3>
               <Badge variant="outline" className="text-xs text-ds-text-muted border-ds-border">
-                {hasActiveFilters ? '3 Active' : 'Default View'}
+                {hasActiveFilters ? `${isRegulatorView ? '4' : '3'} Active` : 'Default View'}
               </Badge>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div className={`grid grid-cols-1 ${isRegulatorView ? 'sm:grid-cols-4' : 'sm:grid-cols-3'} gap-2`}>
+              {isRegulatorView && onInstitutionChange && (
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-ds-text-secondary block">Institution</label>
+                  <Select value={institution} onValueChange={onInstitutionChange}>
+                    <SelectTrigger className="h-8 bg-white border-ds-border hover:border-ds-primary transition-colors duration-200">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border-ds-border shadow-xl z-50">
+                      <SelectItem value="all" className="hover:bg-ds-secondary transition-colors">All Institutions</SelectItem>
+                      <SelectItem value="sharjah-education-academy" className="hover:bg-ds-secondary transition-colors">Sharjah Education Academy</SelectItem>
+                      <SelectItem value="american-university-sharjah" className="hover:bg-ds-secondary transition-colors">American University of Sharjah</SelectItem>
+                      <SelectItem value="sharjah-medical-college" className="hover:bg-ds-secondary transition-colors">Sharjah Medical College</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              )}
+
               <div className="space-y-1">
                 <label className="text-xs font-semibold text-ds-text-secondary block">Academic Year</label>
                 <Select value={academicYear} onValueChange={onAcademicYearChange}>

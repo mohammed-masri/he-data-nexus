@@ -235,31 +235,31 @@ const Institution = () => {
   const renderDashboard = () => (
     <div className="space-y-8">
       {/* Reduced Hero Welcome Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ds-primary via-ds-primary-dark to-ds-text-primary p-6 md:p-8 text-white shadow-2xl">
-        <div className="absolute inset-0 bg-black/10"></div>
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ds-bg-grey-light via-ds-bg-grey-light to-ds-secondary/10 p-6 md:p-8 text-ds-text-primary shadow-md border border-ds-border/50">
+        <div className="absolute inset-0 bg-ds-secondary/5"></div>
         <div className="relative z-10">
           <div className="max-w-4xl">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="p-2.5 bg-white/20 backdrop-blur-sm rounded-xl">
-                <Building2 className="w-7 h-7 text-white" />
+              <div className="p-2.5 bg-ds-primary/10 backdrop-blur-sm rounded-xl border border-ds-primary/20">
+                <Building2 className="w-7 h-7 text-ds-primary" />
               </div>
-              <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm">
+              <Badge className="bg-ds-primary/10 text-ds-primary border-ds-primary/30 backdrop-blur-sm">
                 Institution Portal
               </Badge>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight">
-              Welcome back, <span className="text-ds-secondary">Shadia</span>
+            <h1 className="text-3xl md:text-4xl font-bold mb-3 leading-tight text-ds-text-primary">
+              Welcome back, <span className="text-ds-primary">Shadia</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-4 leading-relaxed">
+            <p className="text-lg md:text-xl text-ds-text-secondary mb-4 leading-relaxed">
               Your comprehensive data management hub for Sharjah Education Academy
             </p>
-            <p className="text-base text-white/80 mb-6 max-w-2xl">
+            <p className="text-base text-ds-text-muted mb-6 max-w-2xl">
               Streamline your institutional data, manage API integrations, and stay compliant with government requirements—all from one powerful platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-white text-ds-primary hover:bg-white/90 font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-ds-primary text-white hover:bg-ds-primary-dark font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 onClick={() => setActiveTab("analytics")}
               >
                 <Zap className="w-5 h-5 mr-2" />
@@ -269,7 +269,7 @@ const Institution = () => {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-ds-primary font-semibold px-8 py-3 rounded-xl transition-all duration-300 transform hover:scale-105"
+                className="border-2 border-ds-primary text-ds-primary bg-transparent hover:bg-ds-primary hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 transform hover:scale-105"
                 onClick={() => setActiveTab("surveys")}
               >
                 <MessageSquare className="w-5 h-5 mr-2" />
@@ -279,8 +279,8 @@ const Institution = () => {
           </div>
         </div>
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full -mr-48 -mt-48"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-ds-secondary/20 to-transparent rounded-full -ml-32 -mb-32"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-ds-secondary/10 to-transparent rounded-full -mr-48 -mt-48"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-ds-primary/10 to-transparent rounded-full -ml-32 -mb-32"></div>
       </div>
 
       {/* Dashboard Filters - Updated to use CompactFilters */}
@@ -706,6 +706,7 @@ const Institution = () => {
             <Button
               variant="outline"
               onClick={() => setSupportViewMode('overview')}
+              className="border-ds-border hover:bg-ds-bg-grey-light transition-all duration-200"
             >
               Back to Overview
             </Button>
@@ -743,15 +744,15 @@ const Institution = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card 
-              className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
+              className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
               onClick={() => setTicketModalOpen(true)}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardHeader className="text-center pb-3 relative z-10">
-                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Ticket className="w-6 h-6 text-white" />
                 </div>
-                <CardTitle className="text-lg text-ds-text-primary group-hover:text-orange-600 transition-colors">Create Ticket</CardTitle>
+                <CardTitle className="text-lg text-ds-text-primary group-hover:text-ds-primary transition-colors">Create Ticket</CardTitle>
               </CardHeader>
               <CardContent className="text-center pt-0 relative z-10">
                 <p className="text-sm text-ds-text-secondary">Report issues and get technical support</p>
@@ -759,15 +760,15 @@ const Institution = () => {
             </Card>
 
             <Card 
-              className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
+              className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
               onClick={() => setMeetingModalOpen(true)}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardHeader className="text-center pb-3 relative z-10">
-                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <CalendarIcon className="w-6 h-6 text-white" />
                 </div>
-                <CardTitle className="text-lg text-ds-text-primary group-hover:text-blue-600 transition-colors">Book Meeting</CardTitle>
+                <CardTitle className="text-lg text-ds-text-primary group-hover:text-ds-primary transition-colors">Book Meeting</CardTitle>
               </CardHeader>
               <CardContent className="text-center pt-0 relative z-10">
                 <p className="text-sm text-ds-text-secondary">Schedule consultation with our experts</p>
@@ -775,28 +776,28 @@ const Institution = () => {
             </Card>
 
             <Card 
-              className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
+              className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden"
               onClick={() => setSupportViewMode('dashboard')}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardHeader className="text-center pb-3 relative z-10">
-                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Eye className="w-6 h-6 text-white" />
                 </div>
-                <CardTitle className="text-lg text-ds-text-primary group-hover:text-purple-600 transition-colors">My Tickets</CardTitle>
+                <CardTitle className="text-lg text-ds-text-primary group-hover:text-ds-primary transition-colors">My Tickets</CardTitle>
               </CardHeader>
               <CardContent className="text-center pt-0 relative z-10">
                 <p className="text-sm text-ds-text-secondary">View and manage your support requests</p>
               </CardContent>
             </Card>
 
-            <Card className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <Card className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <CardHeader className="text-center pb-3 relative z-10">
-                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                <div className="mx-auto w-12 h-12 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-xl flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Phone className="w-6 h-6 text-white" />
                 </div>
-                <CardTitle className="text-lg text-ds-text-primary group-hover:text-red-600 transition-colors">Emergency Support</CardTitle>
+                <CardTitle className="text-lg text-ds-text-primary group-hover:text-ds-primary transition-colors">Emergency Support</CardTitle>
               </CardHeader>
               <CardContent className="text-center pt-0 relative z-10">
                 <p className="text-sm text-ds-text-secondary">24/7 emergency technical assistance</p>
@@ -816,10 +817,12 @@ const Institution = () => {
           <p className="text-sm text-ds-text-secondary mb-6">Your current support status and statistics</p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="border-ds-border bg-gradient-to-br from-ds-bg-grey-light to-white">
+            <Card className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-lg transition-all duration-200">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-                  <Ticket className="w-4 h-4 mr-2 text-orange-500" />
+                  <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                    <Ticket className="w-4 h-4" style={{ color: 'hsl(var(--active-orange))' }} />
+                  </div>
                   Active Tickets
                 </CardTitle>
               </CardHeader>
@@ -829,10 +832,12 @@ const Institution = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-ds-border bg-gradient-to-br from-ds-bg-grey-light to-white">
+            <Card className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-lg transition-all duration-200">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-                  <CalendarIcon className="w-4 h-4 mr-2 text-blue-500" />
+                  <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                    <CalendarIcon className="w-4 h-4" style={{ color: 'hsl(var(--active-blue))' }} />
+                  </div>
                   Scheduled Meetings
                 </CardTitle>
               </CardHeader>
@@ -842,10 +847,12 @@ const Institution = () => {
               </CardContent>
             </Card>
 
-            <Card className="border-ds-border bg-gradient-to-br from-ds-secondary to-white">
+            <Card className="border-ds-border bg-gradient-to-br from-ds-secondary to-white hover:shadow-lg transition-all duration-200">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-                  <Clock className="w-4 h-4 mr-2 text-ds-primary" />
+                  <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                    <Clock className="w-4 h-4 text-ds-primary" />
+                  </div>
                   Avg Response Time
                 </CardTitle>
               </CardHeader>
@@ -857,7 +864,7 @@ const Institution = () => {
           </div>
         </div>
 
-        {/* Self-Service Resources Section - Improved alignment and styling */}
+        {/* Self-Service Resources Section */}
         <div className="space-y-6">
           <div className="text-center space-y-2">
             <div className="flex items-center justify-center space-x-3 mb-3">
@@ -873,31 +880,31 @@ const Institution = () => {
 
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <Card className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <CardHeader className="text-center pb-4 relative z-10">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <FileText className="w-8 h-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-ds-text-primary group-hover:text-blue-600 transition-colors mb-2">Help Center & Documentation</CardTitle>
+                  <CardTitle className="text-xl text-ds-text-primary group-hover:text-ds-primary transition-colors mb-2">Help Center & Documentation</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center pt-0 relative z-10 pb-6">
                   <p className="text-sm text-ds-text-secondary leading-relaxed mb-4">
                     Access our comprehensive knowledge base, step-by-step guides, FAQs, and video tutorials to get the most out of our platform
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
-                    <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       User Guides
                     </Badge>
-                    <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       FAQs
                     </Badge>
-                    <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       Video Tutorials
                     </Badge>
                   </div>
                   <Button 
-                    className="w-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-300 group-hover:shadow-lg"
+                    className="w-full bg-ds-primary hover:bg-ds-primary-dark text-white transition-all duration-300 group-hover:shadow-lg"
                     onClick={() => console.log("Help Center clicked")}
                   >
                     Browse Help Center
@@ -906,31 +913,31 @@ const Institution = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-ds-border bg-white hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <Card className="border-ds-border bg-gradient-to-br from-white to-ds-bg-grey-light hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer group relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-ds-secondary/10 to-ds-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <CardHeader className="text-center pb-4 relative z-10">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-ds-primary to-ds-primary-dark rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <Database className="w-8 h-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl text-ds-text-primary group-hover:text-purple-600 transition-colors mb-2">API Documentation</CardTitle>
+                  <CardTitle className="text-xl text-ds-text-primary group-hover:text-ds-primary transition-colors mb-2">API Documentation</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center pt-0 relative z-10 pb-6">
                   <p className="text-sm text-ds-text-secondary leading-relaxed mb-4">
                     Complete API reference with endpoints, authentication guides, code examples, and integration tutorials for developers
                   </p>
                   <div className="flex flex-wrap justify-center gap-2 mb-4">
-                    <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       API Reference
                     </Badge>
-                    <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       Code Examples
                     </Badge>
-                    <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
+                    <Badge variant="outline" className="text-xs bg-ds-bg-grey-light text-ds-text-primary border-ds-border">
                       SDKs
                     </Badge>
                   </div>
                   <Button 
-                    className="w-full bg-purple-500 hover:bg-purple-600 text-white transition-all duration-300 group-hover:shadow-lg"
+                    className="w-full bg-ds-primary hover:bg-ds-primary-dark text-white transition-all duration-300 group-hover:shadow-lg"
                     onClick={() => console.log("API Documentation clicked")}
                   >
                     View API Docs
@@ -958,7 +965,9 @@ const Institution = () => {
                 <div className="space-y-4">
                   <div className="p-4 bg-white rounded-lg border border-ds-border hover:shadow-md transition-all duration-200">
                     <h3 className="font-medium text-ds-text-primary mb-2 flex items-center">
-                      <Phone className="w-4 h-4 mr-2 text-blue-500" />
+                      <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                        <Phone className="w-4 h-4" style={{ color: 'hsl(var(--active-blue))' }} />
+                      </div>
                       Technical Support
                     </h3>
                     <p className="text-sm text-ds-text-secondary mb-2">For API integration and technical issues</p>
@@ -967,7 +976,9 @@ const Institution = () => {
                   </div>
                   <div className="p-4 bg-white rounded-lg border border-ds-border hover:shadow-md transition-all duration-200">
                     <h3 className="font-medium text-ds-text-primary mb-2 flex items-center">
-                      <MessageSquare className="w-4 h-4 mr-2 text-teal-500" />
+                      <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                        <MessageSquare className="w-4 h-4" style={{ color: 'hsl(var(--active-teal))' }} />
+                      </div>
                       General Inquiries
                     </h3>
                     <p className="text-sm text-ds-text-secondary mb-2">For general questions and support</p>
@@ -978,7 +989,9 @@ const Institution = () => {
                 <div className="space-y-4">
                   <div className="p-4 bg-white rounded-lg border border-ds-border hover:shadow-md transition-all duration-200">
                     <h3 className="font-medium text-ds-text-primary mb-2 flex items-center">
-                      <AlertTriangle className="w-4 h-4 mr-2 text-red-500" />
+                      <div className="p-1 bg-ds-bg-grey-medium rounded mr-2">
+                        <AlertTriangle className="w-4 h-4" style={{ color: 'hsl(var(--active-rose))' }} />
+                      </div>
                       Emergency Support
                     </h3>
                     <p className="text-sm text-ds-text-secondary mb-2">24/7 emergency technical assistance</p>

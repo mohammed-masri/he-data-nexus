@@ -17,6 +17,7 @@ interface AnalyticsBreadcrumbProps {
   department?: string;
   viewMode: 'executive' | 'detailed';
   activeFilters?: number;
+  institution?: string;
 }
 
 export const AnalyticsBreadcrumb = ({
@@ -24,7 +25,8 @@ export const AnalyticsBreadcrumb = ({
   currentSemester,
   department,
   viewMode,
-  activeFilters = 0
+  activeFilters = 0,
+  institution
 }: AnalyticsBreadcrumbProps) => {
   const semesterDisplay = currentSemester === 'fall' ? 'Fall 2024' : 
                          currentSemester === 'spring' ? 'Spring 2024' : 'Summer 2024';
@@ -59,6 +61,17 @@ export const AnalyticsBreadcrumb = ({
                 <BreadcrumbPage className="flex items-center text-ds-text-secondary">
                   <Users className="w-4 h-4 mr-1" />
                   {department}
+                </BreadcrumbPage>
+              </BreadcrumbItem>
+            </>
+          )}
+          {institution && institution !== 'all' && (
+            <>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage className="flex items-center text-ds-text-secondary">
+                  <Building2 className="w-4 h-4 mr-1" />
+                  {institution}
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </>

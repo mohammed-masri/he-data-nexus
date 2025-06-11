@@ -32,6 +32,7 @@ export const InstitutionalKPIDashboard = () => {
   const [academicYear, setAcademicYear] = useState("2024-25");
   const [semester, setSemester] = useState("fall");
   const [department, setDepartment] = useState("all");
+  const [institution, setInstitution] = useState("all");
   
   const pillars = kpiDataService.generatePillarData();
 
@@ -64,25 +65,21 @@ export const InstitutionalKPIDashboard = () => {
     { name: 'Arts', value: 84 }
   ];
 
-  // Reorganized KPI areas with logical grouping
+  // Streamlined KPI areas - Only 6 areas with actual data/implementations
   const studentFocusedAreas = [
     { id: "academic-excellence", label: "Academic Excellence", icon: GraduationCap, priority: "high" },
     { id: "student-lifecycle", label: "Student Success", icon: UserCheck, priority: "high" },
-    { id: "student-services", label: "Student Services", icon: Users, priority: "medium" },
-  ];
-
-  const operationalAreas = [
-    { id: "faculty-hr", label: "Faculty & HR", icon: Users, priority: "high" },
-    { id: "financial-performance", label: "Financial", icon: DollarSign, priority: "high" },
-    { id: "infrastructure", label: "Infrastructure", icon: Settings, priority: "medium" },
-    { id: "quality-assurance", label: "Quality", icon: Shield, priority: "medium" },
   ];
 
   const strategicAreas = [
     { id: "research-innovation", label: "Research", icon: Microscope, priority: "high" },
     { id: "industry-partnerships", label: "Industry", icon: Building2, priority: "medium" },
     { id: "global-engagement", label: "Global", icon: Globe, priority: "medium" },
+    { id: "community-engagement", label: "Community", icon: Bell, priority: "medium" },
   ];
+
+  // Combined areas for tab navigation
+  const allAreas = [...studentFocusedAreas, ...strategicAreas];
 
   return (
     <div className="min-h-screen bg-ds-bg">
@@ -91,10 +88,12 @@ export const InstitutionalKPIDashboard = () => {
         academicYear={academicYear}
         semester={semester}
         department={department}
+        institution={institution}
         showFilters={showFilters}
         onAcademicYearChange={setAcademicYear}
         onSemesterChange={setSemester}
         onDepartmentChange={setDepartment}
+        onInstitutionChange={setInstitution}
         onToggleFilters={() => setShowFilters(!showFilters)}
         overallStats={overallStats}
       />
@@ -114,7 +113,7 @@ export const InstitutionalKPIDashboard = () => {
                 {/* Priority Metrics moved inside Overview tab */}
                 <PriorityMetrics />
 
-                {/* KPI Areas Summary - Grouped Logically */}
+                {/* KPI Areas Summary - Streamlined to 6 Areas */}
                 <div className="space-y-6">
                   <h3 className="text-xl font-bold text-ds-text-primary flex items-center">
                     <Target className="w-6 h-6 mr-3 text-ds-primary" />
@@ -130,7 +129,7 @@ export const InstitutionalKPIDashboard = () => {
                         High Priority
                       </Badge>
                     </div>
-                    <AnalyticsGrid columns={3} className="gap-4">
+                    <AnalyticsGrid columns={2} className="gap-4">
                       {studentFocusedAreas.map((area, index) => (
                         <Card key={index} className="border-ds-border hover:shadow-md transition-shadow bg-white cursor-pointer group">
                           <CardContent className="p-4">
@@ -150,35 +149,6 @@ export const InstitutionalKPIDashboard = () => {
                     </AnalyticsGrid>
                   </div>
 
-                  {/* Operational Areas */}
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-1 h-6 bg-blue-500 rounded-full"></div>
-                      <h4 className="text-lg font-semibold text-ds-text-primary">Operational Excellence</h4>
-                      <Badge className="bg-blue-100 text-blue-700 border-blue-200">
-                        Core Operations
-                      </Badge>
-                    </div>
-                    <AnalyticsGrid columns={4} className="gap-4">
-                      {operationalAreas.map((area, index) => (
-                        <Card key={index} className="border-ds-border hover:shadow-md transition-shadow bg-white cursor-pointer group">
-                          <CardContent className="p-4">
-                            <div className="flex items-center justify-between mb-3">
-                              <area.icon className="w-5 h-5 text-ds-primary" />
-                              <Badge className={`text-xs ${
-                                area.priority === 'high' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
-                              }`}>
-                                {area.priority}
-                              </Badge>
-                            </div>
-                            <h5 className="font-semibold text-ds-text-primary mb-1 text-sm">{area.label}</h5>
-                            <p className="text-xs text-ds-text-muted">Operational metrics</p>
-                          </CardContent>
-                        </Card>
-                      ))}
-                    </AnalyticsGrid>
-                  </div>
-
                   {/* Strategic Areas */}
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
@@ -188,7 +158,7 @@ export const InstitutionalKPIDashboard = () => {
                         Future-Focused
                       </Badge>
                     </div>
-                    <AnalyticsGrid columns={3} className="gap-4">
+                    <AnalyticsGrid columns={4} className="gap-4">
                       {strategicAreas.map((area, index) => (
                         <Card key={index} className="border-ds-border hover:shadow-md transition-shadow bg-white cursor-pointer group">
                           <CardContent className="p-4">
@@ -200,7 +170,7 @@ export const InstitutionalKPIDashboard = () => {
                                 {area.priority}
                               </Badge>
                             </div>
-                            <h5 className="font-semibold text-ds-text-primary mb-1">{area.label}</h5>
+                            <h5 className="font-semibold text-ds-text-primary mb-1 text-sm">{area.label}</h5>
                             <p className="text-xs text-ds-text-muted">Strategic insights</p>
                           </CardContent>
                         </Card>
@@ -246,13 +216,13 @@ export const InstitutionalKPIDashboard = () => {
                       <div className="flex items-center justify-between mb-3 px-2">
                         <h4 className="font-semibold text-ds-text-primary">Performance Areas</h4>
                         <Badge className="bg-ds-secondary text-ds-primary border-ds-border text-xs">
-                          {studentFocusedAreas.length + operationalAreas.length + strategicAreas.length} Areas
+                          {allAreas.length} Areas
                         </Badge>
                       </div>
                       <div className="relative">
                         <div className="overflow-x-auto scrollbar-hide">
                           <NestedTabsList className="bg-transparent flex w-max min-w-full gap-1 p-0">
-                            {[...studentFocusedAreas, ...operationalAreas, ...strategicAreas].map((tab) => {
+                            {allAreas.map((tab) => {
                               const IconComponent = tab.icon;
                               return (
                                 <NestedTabsTrigger 
@@ -287,31 +257,80 @@ export const InstitutionalKPIDashboard = () => {
                     <ResearchInnovationTab />
                   </NestedTabsContent>
 
-                  {[...operationalAreas, ...strategicAreas.filter(area => !['research-innovation'].includes(area.id))].map(area => (
-                    <NestedTabsContent key={area.id} value={area.id}>
-                      <Card className="border-ds-border bg-white">
-                        <CardHeader>
-                          <CardTitle className="flex items-center text-ds-text-primary">
-                            <area.icon className="w-5 h-5 mr-2 text-ds-primary" />
-                            {area.label} Analytics
-                            <Badge className="ml-3 bg-blue-100 text-blue-700">
-                              Coming Soon
-                            </Badge>
-                          </CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="text-center py-8">
-                            <area.icon className="w-12 h-12 text-ds-text-muted mx-auto mb-4" />
-                            <p className="text-ds-text-muted mb-4">Comprehensive {area.label.toLowerCase()} metrics and analytics are being prepared.</p>
-                            <Button variant="outline" className="border-ds-border">
-                              <Bell className="w-4 h-4 mr-2" />
-                              Notify When Ready
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </NestedTabsContent>
-                  ))}
+                  {/* Industry Partnerships Tab */}
+                  <NestedTabsContent value="industry-partnerships">
+                    <Card className="border-ds-border bg-white">
+                      <CardHeader>
+                        <CardTitle className="flex items-center text-ds-text-primary">
+                          <Building2 className="w-5 h-5 mr-2 text-ds-primary" />
+                          Industry Partnerships Analytics
+                          <Badge className="ml-3 bg-blue-100 text-blue-700">
+                            Coming Soon
+                          </Badge>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-center py-8">
+                          <Building2 className="w-12 h-12 text-ds-text-muted mx-auto mb-4" />
+                          <p className="text-ds-text-muted mb-4">Comprehensive industry partnership metrics and analytics are being prepared.</p>
+                          <Button variant="outline" className="border-ds-border">
+                            <Bell className="w-4 h-4 mr-2" />
+                            Notify When Ready
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </NestedTabsContent>
+
+                  {/* Global Engagement Tab */}
+                  <NestedTabsContent value="global-engagement">
+                    <Card className="border-ds-border bg-white">
+                      <CardHeader>
+                        <CardTitle className="flex items-center text-ds-text-primary">
+                          <Globe className="w-5 h-5 mr-2 text-ds-primary" />
+                          Global Engagement Analytics
+                          <Badge className="ml-3 bg-blue-100 text-blue-700">
+                            Coming Soon
+                          </Badge>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-center py-8">
+                          <Globe className="w-12 h-12 text-ds-text-muted mx-auto mb-4" />
+                          <p className="text-ds-text-muted mb-4">Comprehensive global engagement metrics and analytics are being prepared.</p>
+                          <Button variant="outline" className="border-ds-border">
+                            <Bell className="w-4 h-4 mr-2" />
+                            Notify When Ready
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </NestedTabsContent>
+
+                  {/* Community Engagement Tab */}
+                  <NestedTabsContent value="community-engagement">
+                    <Card className="border-ds-border bg-white">
+                      <CardHeader>
+                        <CardTitle className="flex items-center text-ds-text-primary">
+                          <Bell className="w-5 h-5 mr-2 text-ds-primary" />
+                          Community Engagement Analytics
+                          <Badge className="ml-3 bg-blue-100 text-blue-700">
+                            Coming Soon
+                          </Badge>
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="text-center py-8">
+                          <Bell className="w-12 h-12 text-ds-text-muted mx-auto mb-4" />
+                          <p className="text-ds-text-muted mb-4">Comprehensive community engagement metrics and analytics are being prepared.</p>
+                          <Button variant="outline" className="border-ds-border">
+                            <Bell className="w-4 h-4 mr-2" />
+                            Notify When Ready
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </NestedTabsContent>
                 </NestedTabs>
               </TabsContent>
 

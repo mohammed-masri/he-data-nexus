@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { UnifiedTopNav } from "@/components/UnifiedTopNav";
 import ServiceCard from "@/components/ServiceCard";
@@ -7,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { InstitutionalKPIDashboard } from "@/components/analytics/institutional/InstitutionalKPIDashboard";
 import { 
   Building2, BarChart3, Users, MessageSquare, Settings, Shield,
   Plus, Upload, Download, Eye, Edit, Trash2, CheckCircle,
@@ -91,31 +91,30 @@ const Regulator = () => {
   const renderOverview = () => (
     <div className="space-y-8">
       {/* Hero Welcome Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ds-primary via-ds-primary-dark to-ds-text-primary p-8 md:p-12 text-white shadow-2xl">
-        <div className="absolute inset-0 bg-black/10"></div>
+      <div className="relative overflow-hidden rounded-2xl bg-[#FAFAF9] p-8 md:p-12 border border-ds-border shadow-lg">
         <div className="relative z-10">
           <div className="max-w-4xl">
             <div className="flex items-center space-x-3 mb-4">
-              <div className="p-3 bg-white/20 backdrop-blur-sm rounded-xl">
-                <Shield className="w-8 h-8 text-white" />
+              <div className="p-3 bg-ds-secondary rounded-xl border border-ds-border">
+                <Shield className="w-8 h-8 text-ds-primary" />
               </div>
-              <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm">
+              <Badge className="bg-ds-secondary text-ds-primary border-ds-primary/30">
                 Governance Portal
               </Badge>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Welcome, <span className="text-ds-secondary">Dr. Sarah</span>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight text-ds-text-primary">
+              Welcome, <span className="text-ds-primary">Dr. Sarah</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-6 leading-relaxed">
+            <p className="text-xl md:text-2xl text-ds-text-secondary mb-6 leading-relaxed">
               Your comprehensive oversight platform for Sharjah's educational excellence
             </p>
-            <p className="text-lg text-white/80 mb-8 max-w-2xl">
+            <p className="text-lg text-ds-text-muted mb-8 max-w-2xl">
               Monitor institutional performance, ensure compliance, and drive educational innovation across all registered institutions in Sharjah.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-white text-ds-primary hover:bg-white/90 font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-ds-primary text-white hover:bg-ds-primary-dark font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 onClick={() => setActiveTab("institutions")}
               >
                 <Building2 className="w-5 h-5 mr-2" />
@@ -125,7 +124,7 @@ const Regulator = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold px-8 py-3 rounded-xl transition-all duration-300"
+                className="border-ds-border text-ds-text-primary hover:bg-ds-bg-grey-light font-semibold px-8 py-3 rounded-xl transition-all duration-300"
                 onClick={() => setActiveTab("analytics")}
               >
                 <BarChart3 className="w-5 h-5 mr-2" />
@@ -134,9 +133,9 @@ const Regulator = () => {
             </div>
           </div>
         </div>
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full -mr-48 -mt-48"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-ds-secondary/20 to-transparent rounded-full -ml-32 -mb-32"></div>
+        {/* Subtle Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-ds-secondary/30 to-transparent rounded-full -mr-48 -mt-48"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-ds-primary/10 to-transparent rounded-full -ml-32 -mb-32"></div>
       </div>
 
       {/* Enhanced System Overview Stats */}
@@ -432,97 +431,6 @@ const Regulator = () => {
     </div>
   );
 
-  const renderAnalytics = () => (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h2 className="text-2xl font-bold text-ds-text-primary">System Analytics</h2>
-          <p className="text-ds-text-secondary">Comprehensive analytics across all institutions</p>
-        </div>
-        <Button variant="outline" className="border-ds-border hover:bg-ds-bg-grey-light">
-          <Download className="w-4 h-4 mr-2" />
-          Export Report
-        </Button>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="border-ds-border bg-gradient-to-br from-ds-bg-grey-light to-white hover:shadow-lg transition-all duration-200">
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-              <div className="p-1 bg-ds-secondary rounded mr-2">
-                <Users className="h-3 w-3 text-active-purple-600" />
-              </div>
-              Total Students
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-ds-text-primary">42,567</div>
-            <p className="text-xs text-ds-text-secondary font-medium">+8.5% this year</p>
-          </CardContent>
-        </Card>
-        <Card className="border-ds-border bg-gradient-to-br from-ds-bg-grey-light to-white hover:shadow-lg transition-all duration-200">
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-              <div className="p-1 bg-ds-secondary rounded mr-2">
-                <Users className="h-3 w-3 text-active-indigo-600" />
-              </div>
-              Faculty Members
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-ds-text-primary">2,184</div>
-            <p className="text-xs text-ds-text-secondary font-medium">+12 new faculty</p>
-          </CardContent>
-        </Card>
-        <Card className="border-ds-border bg-gradient-to-br from-ds-bg-grey-light to-white hover:shadow-lg transition-all duration-200">
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-              <div className="p-1 bg-ds-secondary rounded mr-2">
-                <Building2 className="h-3 w-3 text-active-blue-600" />
-              </div>
-              Total Programs
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-ds-text-primary">347</div>
-            <p className="text-xs text-ds-text-secondary">Across all institutions</p>
-          </CardContent>
-        </Card>
-        <Card className="border-ds-border bg-gradient-to-br from-ds-secondary to-white hover:shadow-lg transition-all duration-200">
-          <CardHeader>
-            <CardTitle className="text-sm font-medium text-ds-text-secondary flex items-center">
-              <div className="p-1 bg-ds-secondary rounded mr-2">
-                <TrendingUp className="h-3 w-3 text-ds-primary" />
-              </div>
-              Avg Graduation Rate
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-ds-text-primary">89.2%</div>
-            <p className="text-xs text-ds-primary font-medium">Above target (85%)</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Card className="border-ds-border hover:shadow-lg transition-shadow duration-200">
-        <CardHeader className="bg-gradient-to-r from-ds-bg-grey-light to-white border-b border-ds-border">
-          <CardTitle className="text-ds-text-primary flex items-center">
-            <BarChart3 className="w-5 h-5 mr-2 text-ds-primary" />
-            Performance Trends
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="h-64 flex items-center justify-center text-ds-text-secondary bg-gradient-to-br from-ds-bg-grey-light via-white to-ds-bg-grey-light rounded-lg border border-ds-border">
-            <div className="text-center">
-              <BarChart3 className="w-12 h-12 text-ds-primary mx-auto mb-4 opacity-50" />
-              <p>System-wide analytics charts and performance trends would be displayed here</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-  );
-
   const renderSurveys = () => (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -707,6 +615,32 @@ const Regulator = () => {
           </div>
         </CardContent>
       </Card>
+    </div>
+  );
+
+  const renderAnalytics = () => (
+    <div className="space-y-6">
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-2xl font-bold text-ds-text-primary">Regulator Analytics Dashboard</h2>
+          <p className="text-ds-text-secondary">Comprehensive analytics across all registered institutions</p>
+        </div>
+        <div className="flex items-center space-x-3">
+          <Badge className="bg-ds-secondary text-ds-primary border-ds-primary/20 font-medium">
+            <Building2 className="w-3 h-3 mr-1" />
+            24 Institutions
+          </Badge>
+          <Badge className="bg-ds-secondary text-ds-primary border-ds-primary/20 font-medium">
+            <div className="w-2 h-2 bg-ds-primary rounded-full mr-2 animate-pulse" />
+            System-wide Data
+          </Badge>
+        </div>
+      </div>
+
+      {/* Full Analytics Dashboard */}
+      <div className="bg-gradient-to-br from-ds-bg-grey-light to-white rounded-xl border border-ds-border overflow-hidden">
+        <InstitutionalKPIDashboard />
+      </div>
     </div>
   );
 
